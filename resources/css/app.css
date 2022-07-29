@@ -1,8 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 @import "input.css";
 @import "button.css";
+@import "sidebar.css";
 .flex::before,
 .flex::after {
     display: none !important;
@@ -42,7 +43,7 @@
     [multiple]:focus,
     textarea:focus,
     select:focus {
-        /* border-color: transparent;
-        --tw-ring-color: transparent; */
+        border-color: transparent;
+        --tw-ring-color: transparent;
     }
 }

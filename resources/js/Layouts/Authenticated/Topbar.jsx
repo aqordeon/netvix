@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react';
+import { Link } from '@inertiajs/inertia-react';
 
-export default function Topbar() {
+export default function Topbar({ name }) {
     const [dropdownOpen, setDropdownOpen] = useState(true)
     const dropdownTarget = useRef();
 
@@ -23,7 +24,7 @@ export default function Topbar() {
                 />
                 <div className="flex items-center gap-4  cursor-pointer">
                     <span className="text-black text-sm font-medium">
-                        Welcome, Granola Sky
+                        Welcome, {name}
                     </span>
                     <div className="collapsible-dropdown flex flex-col gap-2 relative">
                         <div
@@ -38,7 +39,7 @@ export default function Topbar() {
                             />
                         </div>
                         <div
-                            className="bg-white rounded-2xl text-black font-medium flex flex-col gap-1 absolute z-[999] right-0 top-[80px] min-w-[180px] hidden overflow-hidden"
+                            className="bg-white rounded-2xl text-black font-medium flex flex-col gap-1 absolute z-[999] right-0 top-[80px] min-w-[180px] hidden overflow-hidden border-b-slate-500 border-2"
                             ref={dropdownTarget}
                         >
                             <a
@@ -53,12 +54,13 @@ export default function Topbar() {
                             >
                                 Settings
                             </a>
-                            <a
-                                href="sign_in.html"
+                            <Link
+                                href={route('logout')}
+                                method="post"
                                 className="transition-all hover:bg-sky-100 p-4"
                             >
                                 Sign Out
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

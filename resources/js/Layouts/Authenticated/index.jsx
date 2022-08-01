@@ -6,7 +6,7 @@ export default function Authenticated({ auth, children }) {
         <>
             <div className="mx-auto max-w-screen hidden lg:block">
                 {/* START: Sidebard */}
-                <Sidebar />
+                <Sidebar auth={auth} />
                 {/* End: Sidebard */}
                 <div className="ml-[300px] px-[50px]">
                     <div className="py-10 flex flex-col gap-[50px]">

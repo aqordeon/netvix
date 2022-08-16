@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
         $lastDay = Carbon::parse($activePlan->updated_at)->addMonths($activePlan->subscriptionPlan->active_period_in_months);
         $activeDays = Carbon::parse($activePlan->updated_at)->diffInDays($lastDay);
         $remainingActiveDays = Carbon::parse($activePlan->expired_date)->diffInDays(Carbon::now());
+        
         return [
             'name' => $activePlan->subscriptionPlan->name,
             'remainingActiveDays' => $remainingActiveDays,
@@ -58,11 +59,13 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
                 'activePlan' => $this->activePlan(),
-
             ],
             'flashMessage' => [
                 'message' => Session::get('message'),
                 'type' => Session::get('type'),
+            ],
+            'env' => [
+                'MIDTRANS_CLIENTKEY' => env('MIDTRANS_CLIENTKEY')
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
